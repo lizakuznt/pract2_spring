@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Список предметов</title>
+</head>
+<body>
+<h1>Список предметов</h1>
+<form action="/subs/add" method="post">
+    <input type="text" name="name" placeholder="Название" required>
+    <button type="submit">Добавить предмет</button>
+</form>
+
+<h2>Все предметы:</h2>
+<ul>
+    <th:block th:each="sub : ${subs}">
+        <li>
+            <span th:text="${sub.name} "></span>
+            <form action="/subs/update" method="post" style="display:inline;">
+                <input type="hidden" name="id" th:value="${sub.id}"/>
+                <input type="text" name="name" placeholder="Название" required/>
+                <button type="submit">Обновить</button>
+            </form>
+            <form action="/subs/delete" method="post" style="display:inline;">
+                <input type="hidden" name="id" th:value="${sub.id}"/>
+                <button type="submit">Удалить</button>
+            </form>
+        </li>
+    </th:block>
+</ul>
+</body>
+</html>

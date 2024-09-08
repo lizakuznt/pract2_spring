@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Список специальностей</title>
+</head>
+<body>
+<h1>Список специальностей</h1>
+<form action="/jobs/add" method="post">
+    <input type="text" name="name" placeholder="Название" required>
+    <button type="submit">Добавить специальность</button>
+</form>
+
+<h2>Все специальности:</h2>
+<ul>
+    <th:block th:each="job : ${jobs}">
+        <li>
+            <span th:text="${job.name} "></span>
+            <form action="/jobs/update" method="post" style="display:inline;">
+                <input type="hidden" name="id" th:value="${job.id}"/>
+                <input type="text" name="name" placeholder="Название" required/>
+                <button type="submit">Обновить</button>
+            </form>
+            <form action="/jobs/delete" method="post" style="display:inline;">
+                <input type="hidden" name="id" th:value="${job.id}"/>
+                <button type="submit">Удалить</button>
+            </form>
+        </li>
+    </th:block>
+</ul>
+</body>
+</html>
